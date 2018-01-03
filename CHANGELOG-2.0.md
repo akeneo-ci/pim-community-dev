@@ -14,6 +14,7 @@
 - PIM-7065: Fix versioning when attribute codes are numerics.
 - PIM-7087: Fix completeness normalization when channel code is numeric.
 - PIM-6968: Fix mass delete product
+- PIM-6355: Fix the count by categories on the product grid
 
 ## Improvements
 
@@ -25,6 +26,7 @@
 - Changes the constructor of `Pim\Bundle\EnrichBundle\Controller\Rest\AttributeController` add `Doctrine\ORM\EntityManagerInterface` and `Symfony\Component\Translation\TranslatorInterface`
 - Changes the constructor of `Pim\Bundle\CatalogBundle\EventSubscriber\SaveFamilyVariantOnFamilyUpdateSubscriber` add `Akeneo\Component\StorageUtils\Detacher\BulkObjectDetacherInterface`
 - Changes the constructor of `Pim/Bundle/DataGridBundle/Extension/MassAction/Handler/DeleteProductsMassActionHandler` to add `Akeneo\Component\StorageUtils\Cursor\CursorFactoryInterface`
+- Changes the service `pim_enrich.doctrine.counter.category_product` class to `pim_enrich.doctrine.counter.category_product.class` and change first argument to `@pim_catalog.query.product_query_builder_factory`
 
 # 2.0.10 (2017-12-22)
 
