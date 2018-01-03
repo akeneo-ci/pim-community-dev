@@ -1,3 +1,9 @@
+# 2.0.x
+
+## Bug fixes
+
+- API-567: Fix validation of product-models on API
+
 # 2.0.11 (2018-01-05)
 
 ## Bug fixes
