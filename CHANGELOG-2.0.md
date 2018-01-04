@@ -3,6 +3,7 @@
 ## Bug fixes
 
 - PIM-7086: Fix enable loading message in system configuration
+- PIM-7085: Fix translation missing
 
 # 2.0.11 (2018-01-05)
 
