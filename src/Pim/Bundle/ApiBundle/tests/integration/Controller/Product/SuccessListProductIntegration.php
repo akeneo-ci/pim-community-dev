@@ -4,7 +4,6 @@ namespace Pim\Bundle\ApiBundle\tests\integration\Controller\Product;
 
 use Akeneo\Test\Integration\Configuration;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @group ce
@@ -1208,8 +1207,10 @@ JSON;
 
     /**
      * @param string $productIdentifier
+     *
+     * @return string
      */
-    private function getEncryptedId($productIdentifier)
+    private function getEncryptedId(string $productIdentifier): string
     {
         $encrypter = $this->get('pim_api.security.primary_key_encrypter');
         $productRepository = $this->get('pim_catalog.repository.product');
@@ -1222,7 +1223,8 @@ JSON;
     /**
      * @return array
      */
-    private function getStandardizedProducts() {
+    private function getStandardizedProducts(): array
+    {
         $standardizedProducts['simple'] = <<<JSON
 {
     "_links": {
@@ -1448,7 +1450,7 @@ JSON;
     /**
      * @return Configuration
      */
-    protected function getConfiguration()
+    protected function getConfiguration(): Configuration
     {
         return $this->catalog->useTechnicalCatalog();
     }

@@ -10,7 +10,7 @@ class DeleteProductIntegration extends AbstractProductTestCase
     /**
      * {@inheritdoc}
      */
-    protected function getConfiguration()
+    protected function getConfiguration(): Configuration
     {
         return $this->catalog->useTechnicalSqlCatalog();
     }

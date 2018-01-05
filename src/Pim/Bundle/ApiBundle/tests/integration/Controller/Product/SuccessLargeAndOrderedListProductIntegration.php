@@ -72,7 +72,7 @@ JSON;
     /**
      * {@inheritdoc}
      */
-    protected function getConfiguration()
+    protected function getConfiguration(): Configuration
     {
         return $this->catalog->useTechnicalSqlCatalog();
     }
@@ -82,7 +82,7 @@ JSON;
      *
      * @return string
      */
-    private function getStandardizedProduct($identifier)
+    private function getStandardizedProduct($identifier): string
     {
         $standardized = <<<JSON
 
@@ -113,7 +113,7 @@ JSON;
      *
      * @return string
      */
-    private function getEncryptedId(ProductInterface $product)
+    private function getEncryptedId(ProductInterface $product): string
     {
         $encrypter = $this->get('pim_api.security.primary_key_encrypter');
 
@@ -126,7 +126,7 @@ JSON;
      *
      * @return int
      */
-    private function getListSize()
+    private function getListSize(): int
     {
         $cursorPageSize = (int)$this->getParameter('pim_catalog.factory.product_cursor.page_size');
 

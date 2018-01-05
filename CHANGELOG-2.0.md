@@ -5,6 +5,14 @@
 - PIM-6874: Fix select attribute groups from PEF when there are more than 25
 - PIM-7086: Fix enable loading message in system configuration
 
+## BC Breaks
+
+- Changes the constructor of `Pim\Bundle\ApiBundle\Controller\ProductController` to add `Pim\Component\Catalog\EntityWithFamilyVariant\AddParent`
+
+## Better manage products with variants!
+
+- API-516: be able to add parent to a product via API
+
 # 2.0.11 (2018-01-05)
 
 ## Bug fixes
