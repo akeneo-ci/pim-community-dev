@@ -7,13 +7,6 @@ spec:
   parallelism: JOB_SCALE
   template:
     spec:
-      initContainers:
-        - name: pim
-          image: PIM_IMAGE
-          command: ['sh', '-c', 'cp -Rp /pim /home/jenkins']
-          imagePullPolicy: Always
-          volumeMounts:
-            - { mountPath: /home/jenkins, name: pim }
       containers:
         - name: mysql
           image: eu.gcr.io/akeneo-ci/mysql:5.7-5
@@ -57,26 +50,6 @@ spec:
                   value: Basic ZWxhc3RpYzpjaGFuZ2VtZQ==
             timeoutSeconds: 1
             initialDelaySeconds: 5
-        - name: php
-          image: eu.gcr.io/akeneo-ci/php:7.1-fpm
-          imagePullPolicy: Always
-          command: ["/bin/bash", "-c"]
-          args:
-            - |
-              php-fpm &
-              CHILD_PID=$!
-              (while true; do if [[ -f "/tmp/pod/main-terminated" ]]; then kill $CHILD_PID; fi; sleep 1; done) &
-              wait $CHILD_PID
-              if [[ -f "/tmp/pod/main-terminated" ]]; then exit 0; fi
-          workingDir: /home/jenkins/pim
-          env:
-            - { name: BEHAT_TMPDIR, value: "/home/jenkins/pim/var/cache/tmp" }
-          volumeMounts:
-            - { name: pim, mountPath: /home/jenkins }
-            - { name: tmp-pod, mountPath: /tmp/pod, readOnly: true }
-            - { name: artifacts, mountPath: /tmp/behat/screenshots }
-          resources:
-            requests: {cpu: "300m", memory: "300Mi"}
         - name: httpd
           image: eu.gcr.io/akeneo-ci/httpd:2.4
           command: ["/bin/bash", "-c"]
