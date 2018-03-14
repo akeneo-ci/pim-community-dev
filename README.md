@@ -1,4 +1,4 @@
-Akeneo PIM Development Repository
+Akeneo PIM Development Repository test
 =================================
 Welcome to Akeneo PIM Product.
 
