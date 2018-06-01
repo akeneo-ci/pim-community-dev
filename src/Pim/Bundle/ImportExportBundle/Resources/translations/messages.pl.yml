@@ -4,7 +4,16 @@ pim_import_export:
   job: Zadanie
   connector: Wtyczka
   status:
-    - Gotowe
+    0: Gotowe
+  batch_status:
+    1: Completed
+    2: Starting
+    3: Started
+    4: Stopping
+    5: Stopped
+    6: Failed
+    7: Abandoned
+    8: Unknown
   download_archive:
     archive: pobierz utworzone archiwum|pobierz utworzone archiwa
     output: pobierz utworzony plik|pobierz utworzone pliki
@@ -58,6 +67,7 @@ pim_importexport:
       edit: Edycja profilu eksportu
       remove: Usuwanie profilu eksportu
       launch: Uruchamianie profilu eksportu
+      property_edit: Edycja właściwości ogólnych eksportowanego profilu
       history: Przeglądanie historii profilu eksportu
     import_profile:
       index: Przeglądanie listy profili importu

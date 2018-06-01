@@ -1,3 +1,31 @@
+# 1.7.x
+
+## Bug fixes
+
+- PIM-7336: Fix channel update with "do not convert" values for conversion units
+- PIM-7385: Fix memory leak on purge job command
+
+# 1.7.21 (2018-04-23)
+
+## Bug fixes
+
+- GITHUB-7750: Fix the fatal error when having violations during a bulk action on families (Thanks [FabienSalles](https://github.com/FabienSalles)!)
+- PIM-7279: Fix XSS issue on history grid
+- SDS-3172: Fix ObjectDetacher::detach() for MongoODM storage
+
+# 1.7.20 (2018-04-03)
+
+## Bug fixes
+
+- PIM-6825: Fix cancel button redirection when editing a user
+- GITHUB-7507: Fix XLSX product export to allow decimal separator configuration (Thanks [wa-daniel-fahl](https://github.com/wa-daniel-fahl)!)
+- PIM-7069: Fix Channel export regarding conversion_units output
+- PIM-7119: Fix missing translation on filters
+- PIM-7264: Fix validation on import decimal number greater than limit in database (MySQL)
+- PIM-7162: Fix issue with CSS on reset password form
+- PIM-7239: Change batch size of jobs and add a parameter to edit it
+- GITHUB-7203: Fix comparators not ordered by priority (Thanks [Bogdan Ghitulescu](https://github.com/bghitulescu)!)
+
 # 1.7.19 (2018-02-27)
 
 ## Improvements
