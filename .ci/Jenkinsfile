@@ -46,22 +46,24 @@ stage("Build") {
         }
     }
     milestone 2
-
     withCredentials([string(credentialsId: 'composer-token', variable: 'token')]) {
         parallel(
             "pim-ce": {
                 pod(label: "build", containers: [
                     containerTemplate(name: "docker", image: "paulwoelfel/docker-gcloud:latest", ttyEnabled: true, command: 'cat', resourceRequestCpu: '100m', resourceRequestMemory: '200Mi')
                 ]) {container('docker') {
+    withCredentials([[$class: 'FileBinding', credentialsId:"google-akeneo-ci", variable: 'CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE']]) {
+
                     checkout scm
-                    sh "gcloud container builds submit --config .ci/builder.yaml --substitutions _IMAGE_TAG=${tag},_COMPOSER_COMMAND=${composer_command} ."
-                }}
+                    sh "gcloud container --project=akeneo-ci builds submit --config .ci/builder.yaml --substitutions _IMAGE_TAG=${tag},_COMPOSER_COMMAND=${composer_command} ."
+                }}}
             },
             "pim-ee": {
                 if (editions.contains("ee")) {
                     pod(label: "build", containers: [
                         containerTemplate(name: "docker", image: "paulwoelfel/docker-gcloud:latest", ttyEnabled: true, command: 'cat', resourceRequestCpu: '100m', resourceRequestMemory: '200Mi')
                     ]) {container('docker') {
+    withCredentials([[$class: 'FileBinding', credentialsId:"google-akeneo-ci", variable: 'CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE']]) {
                         checkout([$class: 'GitSCM',
                             branches: [[name: '2.3']],
                             userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-enterprise-dev.git']]
@@ -70,9 +72,8 @@ stage("Build") {
                         dir('packages/pim-community-dev') {
                             checkout scm
                         }
-
-                        sh "gcloud container builds submit --config .ci/builder.yaml --substitutions _IMAGE_TAG=${tag}-ee,_COMPOSER_COMMAND=${composer_command} ."
-                    }}
+                        sh "gcloud --project=akeneo-ci container builds submit --config .ci/builder.yaml --substitutions _IMAGE_TAG=${tag}-ee,_COMPOSER_COMMAND=${composer_command} ."
+                    }}}
                 } else {
                     echo "Skipping Enterprise Edition matrix"
                 }
