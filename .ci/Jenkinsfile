@@ -1,4 +1,5 @@
 #!groovy
+@Library("k8s-utils@aws")
 String[] editions = ["ce"]
 String[] legacyFeatures = ["tests/legacy/features"]
 String launchFrontUnitTests = "yes"
